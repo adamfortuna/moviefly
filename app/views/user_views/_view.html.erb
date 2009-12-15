@@ -1,0 +1,27 @@
+<li>
+  <strong>
+    <% if view.location.blank? %>
+      <i>No location provided</i>
+    <% else %>
+      <%= view.location %>
+    <% end %>
+  </strong>
+  
+  |
+  
+  <% if view.on.nil? %>
+    <i>Unknown date watched</i>
+  <% else %>
+    <span>Watched on <%= view.on %></span>
+  <% end %>
+  
+  | 
+  <span>All attendees:</span>
+  <ul>
+    <%= render :partial => "viewships/viewship", :collection => view.viewships %>
+  </ul>
+  
+  <% if me?(@user) %>
+    <p><%= button_to "I wasn't here", viewship_path(view.viewship_for(current_user)), :method => :delete %></p>
+  <% end %>
+</li>

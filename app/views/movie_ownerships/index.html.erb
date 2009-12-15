@@ -1,0 +1,16 @@
+<% title "#{@movie.name} - Collections" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details">
+      <ul id="ownerships">
+        <%= render :partial => "movie_ownerships/ownership", :collection => @ownerships %>
+      </ul>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <p>Something here</p>
+  </div>
+</div>

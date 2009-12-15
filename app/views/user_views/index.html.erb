@@ -1,0 +1,22 @@
+<% title "#{@movie.name} - Views for #{@user.username}" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details">
+      <h3>All viewings for <%= @movie.name %></h3>
+      
+      <ul id="views">
+        <%= render :partial => 'user_views/view', :collection => @views %>
+      </ul>
+      
+      <% if me?(@user)%>
+        <%= link_to "Add another viewing", new_user_movie_view_path(@user, @movie)%>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <h3>What other people thought of this movie...</h3>
+  </div>
+</div>

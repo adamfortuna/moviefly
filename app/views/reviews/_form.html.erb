@@ -1,0 +1,27 @@
+<% form_for :review, @review, { :url => movie_reviews_path(@movie), :method => :post } do |f| %>
+  <p>Write a review of <b><%= @movie.name %></b></p>
+  <div class="inline-field">
+    <%= error_message_on(@review, :title, {:prepend_text => "Title "}) %>
+    <label for="review_title">Title for your review</label>
+    <%= f.text_field :title, { :class => 'text ui-widget-content ui-corner-all'} %>
+  </div>
+
+  <div class="inline-field">
+    <label for="review_rating">Rating</label>
+    <%= rate_for(@movie, "all") %>
+  </div>
+
+  <div class="multi-line-field">
+    <label for="review_review">Review</label>
+    <span class="block info"></span>
+    <%= error_message_on(@review, :review, {:prepend_text => "Review "}) %>
+    <%= f.text_area :review, { :class => 'text ui-widget-content ui-corner-all'} %>
+  </div>
+
+  <div>
+    <%= error_message_on(@review, :has_spoilers, {:prepend_text => "Spoilers "}) %>
+    <%= f.check_box :has_spoilers, { :class => 'text'} %> <label for="review_has_spoilers">This review contains spoilers</label>  
+  </div>
+<% end %>
+
+<%= inline_rating("#movie_rating_#{@movie.id}") %>

@@ -1,0 +1,52 @@
+<div id="movie_search_wrapper" class="ui-widget-content ui-corner-all">
+	<form method="get" action="/movies">
+		<label for="search">Search for a movie...</label>
+		<input type="text" class="text ui-widget-content ui-corner-all" name="search" id="movie_search" value="search for a movie..." onfocus="if(this.value=='search for a movie...') this.value=''" onblur="if(this.value=='') this.value='search for a movie...';" />
+		<input type="submit" value="search" id="movie_searchsubmit" class="ui-button ui-state-default ui-corner-all" />
+	</form>
+	
+	<span id="seach_status"><a href="#">advanced search</a></span>
+	<span id="seach_status_hidden" class="hidden"><a href="#">hide advanced options</a></span>
+	<span><%= link_to "show all", movies_path %></span>
+
+  <ul id="search_filters">
+    <li>
+      <select>
+        <option>Title</option>
+      </select>
+      <select>
+        <option>contains</option>
+        </option>is</option>
+      </select>
+      <input type="text" />  
+      <span>
+        <a href="#">+</a>
+        <a href="#">-</a>
+      </span>
+    </li>
+
+    <li>
+      <select>
+        <option>Year</option>
+      </select>
+      <select>
+        <option>is</option>
+        <option>between</option>
+      </select>
+      <select>
+        <% (1900..(Time.now.year+5)).each do |year| %>
+          <option <%= "selected='selected'" if Time.now.year == year %>><%= year %></option>
+        <% end %>
+      </select>
+      <span>
+        <a href="#">+</a>
+        <a href="#">-</a>
+      </span>
+    </li>
+    
+    
+  
+  
+  </ul>
+
+</div>

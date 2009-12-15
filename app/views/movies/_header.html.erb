@@ -1,0 +1,30 @@
+<div id="header_section">
+  <div class="avatar">
+    <%= image_tag @movie.boxart_url if @movie.has_boxart? %>
+  </div>
+  <div class="header_info">
+    <h2><%= @movie.name %> (<%= @movie.year %>)</h2>
+    <ul class="nav">
+      <li>Rating: <%= @movie.rating %> in <%= @movie.votes %> votes</li>
+      <li>Reviews: <%= link_to (pluralize(@movie.reviews.length, "reviews")), movie_reviews_path(@movie) %></li>
+      <li>Seen by: <%= pluralize @movie.viewships.length, "person" %></li>
+      <li>Followed by: <%= pluralize @movie.movieships.length, "person" %></li>
+    </ul>
+  </div>  
+</div>
+
+<ul id="side_menu">
+  <%= menu_link "Movie Info", movie_path(@movie) %>
+  <%= menu_link "Reviews", movie_reviews_path(@movie) if @movie.reviews.length > 0 %>
+  <%# menu_link "Seen By", movie_views_path(@movie) %>
+  <%# menu_link "Owned By", movie_ownerships_path(@movie) %>
+  <%# menu_link "Followed By", "/" %>
+
+  <% if logged_in? %>
+    <li class="spacer">Your options</li>
+    <% review ||= current_user.review_for(@movie) %>
+    <%= menu_link "My Review", review.nil? ? new_movie_review_path(@movie) : movie_review_path(@movie, review) %>
+    <%= menu_link "My Views", user_movie_views_path(current_user, @movie) %>
+    <%= menu_link "My Media", user_movie_ownerships_path(current_user, @movie) %>
+  <% end %>
+</ul>

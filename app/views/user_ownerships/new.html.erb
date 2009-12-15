@@ -1,0 +1,27 @@
+<% title "#{@user.username} - Edit Collection for #{@movie.name}" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details">  
+      <h3><%= @user.username %> has "<%= @movie.name %>" in the following formats:</h3>
+      <% form_for :ownerships, { :url => user_movie_ownerships_path(@user, @movie), :method => :post } do |f| %>
+        <div id="ownerships">
+          <%= render :partial => "user_ownerships/form", :collection => @ownerships %>
+        </div>
+
+        <p><%= add_ownership_link "Add another" %></p>
+
+        <div>
+          <%= submit_tag 'Update my Media!' %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+
+  <div id="subpage">
+    <p>Something here</p>
+  </div>
+</div>

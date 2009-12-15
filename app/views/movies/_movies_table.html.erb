@@ -1,0 +1,28 @@
+<table cellspacing="0" id="movies">
+  <caption>Movies</caption>
+
+  <col<%= column_class_for("name") %>/>
+  <col<%= column_class_for("rating") %>/>
+  <col<%= column_class_for("year") %>/>
+  <col<%= column_class_for("imdb_rating") %>/>
+  <% if logged_in? %>
+    <col/>
+  <% end %>
+
+  <thead>
+    <tr>
+      <th><%= link_to "Title", polymorphic_path(@path, :order=>"name", :direction=>direction_for("name")) %></th>
+      <th><%= link_to "Rating", polymorphic_path(@path, :order=>"rating", :direction=>direction_for("rating")) %></th>
+      <th><%= link_to "Year Released", polymorphic_path(@path, :order=>"year", :direction=>direction_for("year")) %></th>
+      <th><%= link_to "IMDB Rating", polymorphic_path(@path, :order=>"imdb_rating", :direction=>direction_for("imdb_rating")) %></th>
+      <% if logged_in? %>
+      <th class="rating_header">Rating</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "movies/movie_table", :collection => movies %>
+  </tbody>
+</table>
+
+<p>Total movies: <%= movies.total_entries%> Found</p>

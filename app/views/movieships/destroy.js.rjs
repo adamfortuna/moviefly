@@ -1,0 +1,1 @@
+page.replace_html "monitoring_movie_#{@movie.id}", link_to_remote("Save", :url => movieships_path, :with => "'movie_id=#{@movie.id}'", :method => :post)

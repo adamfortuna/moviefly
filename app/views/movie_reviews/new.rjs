@@ -1,0 +1,6 @@
+page.insert_html :bottom, :footer, "<div id='new_record'></div>"
+page.insert_html :bottom, :new_record, :partial => 'reviews/form', :object => @review
+review_dialog_for(page, "new_record", "Write a Review", 
+                  { "Create Review" => "function(){ alert('test');}", 
+                    "Cancel" => "function() { alert('test'); }"
+                  })

@@ -1,0 +1,17 @@
+<% title "Genres" %>
+<div id="content" class="single_col">
+  <table cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <th><%= link_to "Name", tags_path(:order=>"name", :direction=>direction_for("name")) %></th>
+        <th><%= link_to "Number of Movies", tags_path(:order=>"count", :direction=>direction_for("count")) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => @genres %>
+    </tbody>
+  </table>
+
+  <p>Total languages: <%= @genres.total_entries%> Found</p>
+  <div><%= will_paginate @genres %></div>
+</div>

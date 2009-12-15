@@ -1,0 +1,22 @@
+<%- title "Movies" %>
+<% has_ratings if logged_in? -%>
+
+<div id="content" class="single_col ui-corner-all">
+  <div class="list_header">
+    <h2>Movies</h2>
+    
+    <ul class="nav buttons">
+      <%= menu_link "Box Art", "/", { :a_class => "ui-button ui-state-default ui-corner-all" } %>
+      <%= menu_link "Table", "/", { :a_class => "ui-button ui-state-default ui-corner-all" } %>
+      <%= menu_link "List", "/", { :a_class => "ui-button ui-state-default ui-corner-all" } %>
+    </ul>
+  </div>
+
+  <%= render :partial => "movies/search" %>
+
+
+  <div><%= will_paginate @movies %></div>
+  <%= render :partial => "movies/movies_#{@style}", :locals => { :movies => @movies } %>
+  <div><%= will_paginate @movies %></div>
+  <p><%= link_to "Looking for a movie that's not ", new_movie_path %></p>
+</div>

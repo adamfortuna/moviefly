@@ -1,0 +1,47 @@
+<% view = form -%>
+<div class="view">
+
+<% if view.new_record? || view.creator?(current_user) %>
+
+  <% form_for :view, view.view, :url => (view.new_record? ? movie_views_path(@movie) : movie_view_path(@movie, view.view)), :html => { :method => (view.new_record? ? :post : :put) } do |f| %>
+    <div>
+      <%= label(:view, :location) %>
+      <%= f.text_field :location %>  
+    </div>
+
+    <div>
+      <%= label(:view, :on) %>
+      <%= datetime_select(:view, :on, { :start_year => @movie.year, :end_year => Time.now.year, :include_blank => true }) %>
+    </div>
+
+    <div>
+      <%= label(:view, :notes) %>
+      <%= f.text_area :notes, :rows => 3 %>  
+    </div>
+  
+    <% id = (view.new_record? ? "new" : view.view.id) %>
+    <div id="viewships_<%= id -%>">
+      <div class="viewship">
+        <p>Attendee: <%= link_to current_user.login, user_path(current_user) %> (you)</p>
+      </div>
+      <%= render :partial => view.view.viewships %>
+    </div>
+    <p><%= add_viewship_link "Add another attendee", id %></p>
+    <div>
+      <%= submit_tag (view.new_record? ? "Add this Viewing!" : "Edit this Viewing!") %>
+    </div>
+  <% end %>
+  <% if !view.new_record? %>
+    <%= button_to "I wasn't here! Remove this!", user_movie_viewship_path(view.user, view.movie, view), :method => :delete %>
+  <% end %>
+<% else %>
+  You were marked as being here for this showing by <%= link_to view.view.user.login, user_path(view.view.user) %>:<br/>
+  <%= view_details(view.view, "<br/>") %>
+  
+  <%= button_to "I wasn't here! Remove this!", user_movie_viewship_path(view.user, view.movie, view), :method => :delete %>
+  
+  <% if view.unconfirmed? %>
+    <%= button_to "Confirm this viewing?", confirm_user_movie_viewship_path(view.user, view.movie, view), :method => :post %>
+  <% end %>
+<% end %> 
+</div>

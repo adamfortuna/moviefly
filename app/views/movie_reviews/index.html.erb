@@ -1,0 +1,23 @@
+<%- title "#{@movie.name} - Reviews" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+    
+    <div class="details">
+      <% if @reviews.length > 0 %>
+        <ul>
+          <%= render :partial => "movie_reviews/review", :collection => @reviews %>
+        </ul>
+        <p>Total reviews: <%= @reviews.total_entries%> Found</p>
+        <div><%= will_paginate @reviews %></div>    
+      <% else %>
+        <p>There are no reviews.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <h2>Which reviews did you want?</h2>
+    <p> Options here for filtering reviews...</p>
+  </div>
+</div>

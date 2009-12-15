@@ -1,0 +1,6 @@
+<li>
+  <%= link_to ownership.media.name, media_path(ownership.media) %> (<%=ownership.count%>)
+  <% unless ownership.notes.blank? %>
+  <p><%= h ownership.notes %></p>
+  <% end %>
+</li>

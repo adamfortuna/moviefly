@@ -1,0 +1,65 @@
+<% title @movie.name -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'header' %>
+
+    <div class="details">  
+      <% unless @movie.alias.blank? -%>
+        <p>
+          Alias(es): <%= @movie.alias %>
+        </p>
+      <% end -%>
+
+
+      <p>Languages: <%= movie_languages(@movie.languages) %></p>
+      <p>Country: <%= movie_countries(@movie.countries) %></p>
+      <p>Genres: <%= movie_tags(@movie.tags) %></p>  
+    </div>
+    
+    <ul class="reviews">
+      <%= render :partial => "movie_reviews/review", :collection => @movie.reviews %>
+    </ul>
+  </div>
+
+  <div id="subpage">
+    <% if logged_in? %>
+      <h2>Your Stats for this movie</h2>  
+      <ul class="stats">    
+        <% if current_user.seen?(@movie) %>
+          <li>You have seen this movie <%= link_to pluralize(current_user.seen_count(@movie), "time"), user_movie_views_path(current_user, @movie) %>.</li>
+        <% end %>
+
+        <li>
+          <% has_ratings("#movie_rating_#{@movie.id}") -%>
+          <%= rate_for(@movie) %>
+        </li>
+      
+        <% if current_user.reviewed?(@movie) %>
+          <% review ||= current_user.review_for(@movie) %>
+          <li>
+            <h3><%= h review.title %></h3>
+            <p><%= h truncate(review.review, :length => 100) %></p>
+            <p><%= link_to "Edit Your Review", { :url => edit_movie_review_path(@movie, review), :method => :get } %></p>
+          </li>
+        <% else %>
+          <li>
+            You have not reviewed this movie.<br/>
+            <%= link_to_remote "Review this movie now.", { :url => new_movie_review_path(@movie), :method => :get } %>
+          </li>
+        <% end %>
+
+        <% if current_user.owns?(@movie) %>
+          <li>
+            You have this movie in the following formats:
+            <ul>
+              <%= render :partial => current_user.ownerships_for(@movie) %>
+            </ul>
+            <p><%= link_to "Manage my media", user_movie_ownerships_path(current_user, @movie) %></p>
+          </li>
+        <% else %>
+          <li><%= link_to "I have this movie...", user_movie_ownerships_path(current_user, @movie) %></li>
+        <% end %>      
+      </ul>
+    <% end %>
+  </div>
+</div>

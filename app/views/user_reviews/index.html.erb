@@ -1,0 +1,17 @@
+<%- title "Movies Reviews for #{@user.username}" %>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'users/header' %>
+    <div class="details">
+      <ul class="reviews">
+        <%= render :partial => "user_reviews/review", :collection => @reviews %>
+      </ul>
+      <p>Total reviews: <%= @reviews.total_entries%> Found</p>
+      <div><%= will_paginate @reviews %></div>    
+    </div>
+  </div>
+  <div id="subpage">
+    <h2>Which reviews did you want?</h2>
+    <p> Options here for filtering reviews...</p>
+  </div>  
+</div>

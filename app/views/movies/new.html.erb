@@ -1,0 +1,17 @@
+<div id="content">
+  <fieldset>
+    <legend>Add A Movie</legend>
+    <% form_for @movie do |f| %>  
+      <div class="field">
+        <label for="movie_imdb_id">IMDB_ID</label>
+        <span class="info">This is the IMDB ID of the movie you want to add. For example 'tt0338526'.</span>
+        <%= error_message_on(@movie, :imdb_id, {:prepend_text => "IMDB ID "}) %>
+        <%= f.text_field :imdb_id %>
+      </div>
+    
+      <div>
+        <%= f.submit "Create!" %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

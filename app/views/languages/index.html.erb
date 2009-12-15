@@ -1,0 +1,24 @@
+<%- title "Languages" %>
+<div id="content" class="single_col">
+  <table cellpadding="0" cellspacing="0">
+    <caption>Languages</caption>
+  
+    <col<%= column_class_for("name") %>/>
+    <col<%= column_class_for("abbreviation") %>/>
+    <col<%= column_class_for("count") %>/>
+  
+    <thead>
+      <tr>
+        <th><%= link_to "Name", languages_path(:order=>"name", :direction=>direction_for("name")) %></th>
+        <th><%= link_to "Abbreviation", languages_path(:order=>"abbreviation", :direction=>direction_for("abbreviation")) %></th>
+        <th><%= link_to "Number of Movies", languages_path(:order=>"count", :direction=>direction_for("count")) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => @languages %>
+    </tbody>
+  </table>
+
+  <p>Total languages: <%= @languages.total_entries%> Found</p>
+  <div><%= will_paginate @languages %></div>
+</div>

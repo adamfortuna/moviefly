@@ -1,0 +1,86 @@
+<% title @user.username -%>
+<% javascript_files do %>
+  <script type="text/javascript" src="http://jqueryui.com//themeroller/themeswitchertool/"></script>
+<% end %>
+<% javascript do %>
+  $("#user_theme").themeswitcher();
+<% end %>
+
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'header' %>
+
+    <div class="details">  
+      <fieldset>
+        <legend>Edit your profile</legend>
+
+        <% form_for :user, :url => user_path(@user), :html => {:method=>:put } do |p| %>    
+
+          <div>
+            <label for="user_username">Username</label>
+            <span class="block info">This is your nickname, if you go by one. Across the site this is what people will see. This can be your real name or an alias, but must be unique here on MovieFly. It'll also be the URL for your profile and any other ways we use identify you.</span>
+            <%= error_message_on(@user, :username, {:prepend_text => "Username "}) %>
+            <%= p.text_field :username, { :class => 'text'} %>
+          </div>
+          
+          <div>
+            <label for="theme">Which Theme do you want to use?</label>
+            <div id="user_theme"></div>
+          <div>
+            <label for="user_name">Real Name</label>
+            <span class="block info">We'll show your real name in your profile if you want people to see it. Some people put first, some put last -- whatever works for you. People will be able to search for you by this, so it helps to list it if you want people you know to find you.</span>
+            <%= error_message_on(@user, :name, {:prepend_text => "Real Name "}) %>
+            <%= p.text_field :name, { :class => 'text'} %>
+          </div>
+
+          <div>
+            <label for="user_rating_step">Rating Step</label>
+            <span class="block info">Difference between ratings you'd like to use. For instance, if this is <b>5</b>, then you'll be able to rate something 90, 95 or 100. If this is <b>1</b>, you'll be able to use any number (integers) form 1-100. You can also use .1 if you want to be really precise.</span>
+            <%= error_message_on(@user, :rating_step, {:prepend_text => "Rating step "}) %>
+            <%= p.text_field :rating_step, { :class => 'text'} %>
+          </div>
+
+          <div>
+            <label for="user_about">About Me</label>
+            <span class="block info">
+              This is for info about you, not javascript, styles or forms. This isn't MySpace after all.<br/>Want something to write about? Here's a few ideas to get those brain juices flowing... 
+              What movies or genres do you love? Do you prefer going out to movies or staying in? -- and why? What are some of the memorable movies you've seen? What city do you live in?
+              <br/><br/>You Can use the following tags: <%= ALLOWED_HTML_TAGS.join(', ') %>
+            </span>
+            <%= error_message_on(@user, :about, {:prepend_text => "About Me "}) %>
+            <%= p.text_area :about, { :class => 'text'} %>
+          </div>
+
+
+          <div>
+            <strong>Emails</strong>
+            <span class="block info">
+              Associating emails with your account is an important thing!
+              When someone goes out to a movie, and marks you as a participant, they might mark you by using your email address.
+              If we know that email address belongs to you, you'll see any movies that others claimed you watched.
+              Others can also look you up to add you as a friend using your email address.
+              These will never be shown on the site or shared with others.
+            </span>
+            <div id="emails">
+              <%= render :partial => @user.emails %>
+            </div>
+            <p><%= add_email_link "add another email address" %></p>
+          </div>
+
+          <div>
+            <%= p.submit "Update My Information", :class => "button" %>
+            <input type="hidden" name="switch" value="name" />
+          </div>
+
+        <% end %>
+      </fieldset>
+      
+    </div>
+  </div>
+
+  <div id="subpage">
+    <h2>Setup your profile</h2>
+    <p>You can add as many email addresses as you want.</p>
+    <p>You can add as many login systems as you want.</p>
+  </div>
+</div>

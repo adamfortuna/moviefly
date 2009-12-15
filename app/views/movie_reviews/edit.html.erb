@@ -1,0 +1,20 @@
+<% title "#{@movie.name} - Edit My Review/Rating" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+    <div class="details">
+      <%= error_messages_for :review %>
+      <% form_for :review, @review, :url => movie_review_path(@movie, @review),  :html => { :method => :put } do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+        <div>
+          <%= submit_tag 'Edit My Review!' %>
+        </div>
+      <% end %>
+      <%= button_to "Delete my Review and Rating", movie_review_path(@movie, @review), :method => :delete %>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <%= render :partial => "user_reviews/sidebar_me", :locals => { :user => @review.user }%>
+  </div>
+</div>

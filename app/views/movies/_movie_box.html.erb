@@ -1,0 +1,7 @@
+<li>
+  <% link_to(movie_path(movie_box)) do %>
+    <span><%= movie_box.name %> (<%= movie_box.year -%>)</span>
+    <%= image_tag movie_box.boxart_url %>
+  <% end %>
+  <%= rate_for(movie_box, "all") if logged_in? %>
+</li>

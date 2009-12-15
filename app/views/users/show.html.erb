@@ -1,0 +1,31 @@
+<% title @user.username -%>
+
+<div id="content" class="sidebar three_col ui-corner-all">
+  <div id="page">
+    <%= render :partial => 'header' %>
+
+    <div class="details">  
+      <p>more info here...</p>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <% if logged_in? %>
+      <% if me?(@user) %>
+        <h2>This is your profile</h2>
+        <p>Other people that view your profile will see various similarities over here, but that doesn't make much sense for you, now does it?</p>
+      <% else %>
+        <h2>Your connection</h2>
+    
+        <% if current_user.friends_with?(@user) %>
+          <%= link_to "Remove #{@user.login} as a friend", user_friendship_path(current_user, current_user.friendship_for(@user)), { :method => :delete } %>
+        <% else %>
+          <%= link_to "Add #{@user.login} as a friend", user_friendships_path(@user), { :method => :post } %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <h2>Sign In or Regster!</h2>
+      <p>Sign in or register to see what you have in common with <%= @user.login %>.</p>
+    <% end %>
+  </div>
+</div>

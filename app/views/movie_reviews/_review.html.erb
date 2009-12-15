@@ -1,0 +1,13 @@
+<li>
+  <h3><%= h review.title %></h3>
+  <span class="status">
+    Review by <%= link_to review.user.username, user_path(review.user) %> on <%= review.created_at %>.
+    Rated: <%= review.rating %>
+    <% if me?(review.user) %>
+      <%= link_to "Edit this Review", edit_movie_review_path(review.movie, review) %>
+    <% end %>
+  </span>
+  <div>
+    <%= simple_format(sanitize(review.review, :tags => ALLOWED_HTML_TAGS )) %>
+  </div>
+</li>

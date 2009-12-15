@@ -1,0 +1,94 @@
+/* #container */
+#container { width: 1040px; margin:0 auto; }
+/* end #container */
+
+
+
+/* #header */
+#header { height:60px; background-color:#fff; border:1px solid #999; margin-top:10px; position:relative; }
+
+#logo {	 }
+#logo a { font-size:1.4em; color:#333; line-height:60px; width:150px; height:60px; padding-left:30px; display:block; text-decoration:none; }
+#logo a:hover { background-color:#eee; }
+
+#user_controls { position:absolute; right:0; top:0; width:400px; height:40px; text-align:right; }
+#user_controls .nav { float:right; width:200px; }
+#user_controls .nav li a { line-height:24px; float:right; padding:0 20px; color:#333; font-size:11px;text-decoration:none; }
+#user_controls .nav li a:hover, #user_controls .nav li a:active { background-color:#DFEFFC; color:#000; }
+#user_controls p { margin:4px 15px 0 0; font-size:10px; }
+#user_controls p a { color:#333; }
+#user_controls p a:hover, #user_controls p a:active { color:#000; text-decoration:none; }
+
+#menu { position:absolute; left:200px; top:0px; width:600px; z-index:2;}
+#menu.nav li { position:relative; float:left; }
+#menu.nav li a { line-height:60px; padding:0 20px; color:#555; text-decoration:none; }
+#menu.nav li a.over, #menu.nav li a:hover, #menu.nav li a:active { background-color:#DFEFFC; color:#000; }
+#menu.nav li ul { display:none; }
+#menu.nav li.over ul { display:block; position:absolute; top:50px; width:160px; border:1px solid #ccc; left:0; }
+#menu.nav li.over ul li { display:inline; border-top:1px solid #efefef; }
+#menu.nav li.over ul li:first { border-top:none; }
+#menu.nav li.over ul li a { padding:10px; background-color:#fff; line-height:16px; width:140px;}
+#menu.nav li.over ul li a:hover { background-color:#d1e5f5; }
+#menu.nav li.over ul li.divider { border-top:1px solid #bcbcbc; }
+
+
+#search_wrapper { position:absolute; right:0; top:25px; margin-right:15px; }
+#search_wrapper label { display:none; }
+input#search { width: 170px; height: 18px; line-height:16px; font-size:1em; padding:4px; color:#666; }
+input#searchsubmit { padding:3px 8px; font-size: 1em; }
+/*
+input#searchsubmit { color: #0080c0; background: #fff; letter-spacing: 1px;	border: 1px solid #ccc;	 }
+input#searchsubmit:hover { background-color:#eee; }
+ end #header */
+
+
+
+/* #content */
+#content { background-color:#fff; border:1px solid #999; margin:10px 0 0 0; padding:0; position:relative; }
+#content.sidebar { margin-left:170px; min-height:400px; }
+#content.single_col { padding:20px; }
+#content.three_col, #content.two_col { background:url(/images/content_bg.png) repeat-y right; }
+#content.two_col { background-color:#fff; }
+#content.three_col  #page { width:550px; float:left; clear:both; }
+#content:after { content:"."; display:block; height:0; font:0/0 serif; clear:both; visibility:hidden; }
+
+#content.two_col #main { width:728px; }
+
+#content.two_col #subpage, #content.three_col #subpage { width:270px; float:right; }
+#content.three_col #subpage ul.stats { list-style:none; margin:0; padding:0; }
+#content.three_col #subpage ul.stats li { border-top:1px dashed #999; padding:10px 0; }
+#content.three_col #subpage ul.stats li:first-child { border-top:none; }
+
+#page, #subpage, #main { margin:10px; float:left; }
+#page .details { clear:both; padding-top:10px; }
+#page:after, .details:after { content:"."; display:block; height:0; font:0/0 serif; clear:both; visibility:hidden; }
+
+#main { width:767px; }
+
+/* #side menu - used for movies/users left side menu */
+#side_menu { position:absolute; left:-170px; top:40px; list-style:none; margin:0; padding:0; border-bottom:1px solid #999; width:170px; }
+#side_menu li { border:1px solid #999; background-color:#fff; border-bottom:none; }
+#side_menu li.spacer { padding-top:30px; background-color:#cdcdcd; border-left:1px solid #cdcdcd; font-weight:bold; font-size:14px; text-indent:10px; }
+#side_menu li.active { border-right:1px solid #fff; }
+#side_menu li a { display:block; width:156px; padding:6px 0 6px 12px; background-color:#ededed; }
+#side_menu li.active a, #side_menu li a:hover { background-color:#fff;}
+/* end */
+
+
+
+/* #footer */
+#footer { background-color:#fff; border:1px solid #999; margin-top:10px; padding:20px; display:none; }
+/* end #footer */
+
+
+
+/* Header section on movies and user page */
+#header_section { padding-top:15px; }
+#header_section .avatar { float:left; width:130px; padding-left:20px; }
+#header_section .header_info { float:left; width:400px; }
+#header_section .header_info h2 { margin-top:0; }
+#header_section .header_info .nav li a { float:none; display:inline; }
+.header_section:after { content:"."; display:block; height:0; font:0/0 serif; clear:both; visibility:hidden; }
+
+
+#rating_suggestion { display:absolute; border:2px solid #ccc; background-color:#eee; padding:10px; display:none; float:left; }

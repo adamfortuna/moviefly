@@ -1,0 +1,21 @@
+<li>  
+  <div class="info">
+    <% link_to(movie_path(review.movie)) do %>
+      <%= image_tag review.movie.boxart_url if review.movie.has_boxart? %>
+    <% end %>
+    <ul class="status">
+      <li>By <%= link_to review.user.username, user_path(review.user) %></li>
+      <li>Written on <%= review.created_at %>.</li>
+      <li>Rated: <%= review.rating %></li>
+      <% if me?(review.user) %>
+        <li><%= link_to "Edit this Review", edit_movie_review_path(review.movie, review) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="review">
+    <h3><%= h review.title %> (<%= review.rating %>/10)</h3>
+    <span class="small">A review for <%= link_to review.movie.name, movie_path(review.movie) %></span>
+    <p><%= h review.review %></p>
+  </div>
+</li>

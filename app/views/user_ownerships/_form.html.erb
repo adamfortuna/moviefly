@@ -1,0 +1,32 @@
+<% ownership = form -%>
+<div class="ownership">
+  <% fields_for_ownership(ownership) do |f| %>
+    <div>
+      <label for="user_about">Media</label>
+      <span class="block info">
+        What format is your version of this movie in?
+      </span>
+      <%= error_message_on(ownership, :media_id, {:prepend_text => "Media "}) %>
+      <%= f.select(:media_id, Media.all(:order => :name).collect{ |m| [m.name, m.id] }) %>  
+    </div>
+    <div>
+      <label for="user_about">Count</label>
+      <span class="block info">
+        How many copies of this movie do you have? (this should probably be 1)
+      </span>
+      <%= error_message_on(ownership, :media_id, {:prepend_text => "Count "}) %>
+      <%= f.select(:count, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]) %>  
+    </div>
+    <div>
+      <label for="user_about">Notes</label>
+      <span class="block info">
+        Any additional notes about this version.
+        <br/><br/>You Can use the following tags: <%= ALLOWED_HTML_TAGS.join(', ') %>
+      </span>
+      <%= error_message_on(ownership, :notes, {:prepend_text => "Notes "}) %>
+      <%= f.text_area :notes, { :class => 'text'} %>
+    </div>  
+
+    <%= link_to_function "remove", "$(this).parent().remove()" %>
+  <% end %>
+</div>

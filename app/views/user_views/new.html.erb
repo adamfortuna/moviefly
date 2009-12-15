@@ -1,0 +1,55 @@
+<% title "#{@movie.name} - Views for #{@user.username}" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details view">
+      <h3>Views of <%= link_to @movie.name, @movie %> by <%= @user.username %></h3>
+      <%= error_messages_for :view %>
+      <% form_for :view, @view, { :url => movie_views_path(@movie), :method => :post } do |f| %>
+
+      <div class="required">
+        <label for="view_location">Location</label>
+        <span class="block info">If you want to record where you saw this movie, give it a location name.</span>
+        <%= error_message_on(@view, :location, {:prepend_text => "Location "}) %>
+        <%= f.text_field :location, { :class => 'text'} %>
+      </div>
+
+      <div>
+        <label for="view_address">Address</label>
+        <span class="block info">If you'd like to record an address for this viewing, you can include it here. Might be able to map these later.</span>
+        <%= error_message_on(@view, :address, {:prepend_text => "Address "}) %>
+        <%= f.text_field :address, { :class => 'text'} %>
+      </div>
+      
+      <div class="date">
+        <label for="view_on">Date Watched</label>
+        <span class="block info">You can include when you watched this. This can be as specific or as general as you want. Just leave the others blank.</span>
+        <%= datetime_select(:view, :on, { :prompt => {:day => 'Choose day', :month => 'Choose month', :year => 'Choose year', :hour => 'Choose hour', :minute => 'Choose minute'}, :start_year => @movie.year, :end_year => Time.now.year, :date_separator => '', :time_separator => '', :datetime_separator => ' at', :order => [:month, :day, :year, :hour, :minute] }) %>
+      </div>
+  
+      <div class="notes">
+        <label for="user_about">Notes</label>
+        <span class="block info">Anything you want to mention about this viewing of the movie. This isn't the review. For that you can edit your review.</span>
+        <%= error_message_on(@view, :notes, {:prepend_text => "Notes "}) %>
+        <%= f.text_area :notes, { :class => 'text'} %>
+      </div>
+
+      <div class="attendees">
+        <strong>Attendees</strong>
+        <span class="block info">Anyone who was here. You can also add others by email address.</span>
+        <ul>
+          <%= render :partial => 'viewships/form', :collection => [current_user.friends,current_user].flatten, :locals => {:f => f} %>
+        </ul>
+      </div>
+      
+      <div>
+        <%= submit_tag 'Add My View!' %>
+      </div>
+    </div>
+  </div>
+  
+  <div id="subpage">
+    <h3>Your friends that have seen this movie... </h3>
+  </div>
+<% end %>

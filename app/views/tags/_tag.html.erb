@@ -1,0 +1,4 @@
+<tr class="record <%= cycle '', 'even-record' %>">
+  <td><%= link_to tag.name, tag_movies_path(tag) -%></td>
+  <td class="numeric last"><%= tag.taggings.size %></td>
+</tr>

@@ -1,0 +1,11 @@
+<li>
+  <% if viewship.viewable.is_a?(User)%>  
+    <% link_to(user_path(viewship.viewable)) do %>
+      <%= image_tag viewship.viewable.gravatar_url(:size => 60) %>
+      <%= viewship.viewable.username %>
+    <% end %>
+  <% else %>
+    <%= image_tag viewship.viewable.gravatar_url(:size => 60) %>
+    <%= viewship.viewable.username %>  
+  <% end %>  
+</li>

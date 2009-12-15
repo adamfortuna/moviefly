@@ -1,0 +1,1 @@
+ALLOWED_HTML_TAGS = %w(a strong em br table tr td div span)

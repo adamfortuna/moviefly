@@ -1,0 +1,55 @@
+development:
+  # Sqlite Settings
+  adapter: mysql
+  database: moviefly_development
+  username: root
+  password: 
+  pool: 5
+  timeout: 5000
+
+  # Mysql Settings
+  # adapter: mysql
+  # encoding: utf8
+  # database: bort_development
+  # username: root
+  # password:
+  # pool: 5
+  
+test:
+  # Sqlite Settings
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+  # Mysql Settings
+  # adapter: mysql
+  # encoding: utf8
+  # database: bort_test
+  # username: root
+  # password:
+  # pool: 5
+  
+staging:
+  # Sqlite Settings
+  adapter: sqlite3
+  database: db/staging.sqlite3
+  pool: 5
+  timeout: 5000
+
+  # Mysql Settings
+  # adapter: mysql
+  # encoding: utf8
+  # database: bort_staging
+  # username: root
+  # password:
+  # pool: 5
+  
+production:
+  host: mysql.moviefly.org
+  adapter: mysql
+  database: moviefly_production
+  username: moviefly
+  password: Q1w2e3r4
+  pool: 5
+  timeout: 5000

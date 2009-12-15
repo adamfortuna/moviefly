@@ -1,0 +1,8 @@
+<div class="email">
+  <label>
+    <span>Email</span>
+    <%= text_field_tag "user[all_emails][]", email.email, { :class => 'text'} %>
+  </label>
+  <%= link_to_function "remove", "$(this).parent().remove()" %>
+  (<%= "un" unless email.confirmed? %>confirmed)
+</div>

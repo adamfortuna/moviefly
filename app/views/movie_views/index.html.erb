@@ -1,0 +1,14 @@
+<%- title "#{@movie.name} - Views" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+    <ul>
+      <%= render :partial => 'view', :collection => @views %>
+    </ul>
+  </div>
+
+  <div id="subpage">
+    <h2>Which views did you want?</h2>
+    <p> Options here for filtering reviews...</p>
+  </div>
+</div>

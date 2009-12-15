@@ -1,0 +1,17 @@
+<tr>
+  <td><%= link_to movie_table.name, movie_path(movie_table) -%></td>
+  <td><%= movie_table.rating -%></td>
+  <td><%= movie_table.year -%></td>
+  <td><%= movie_table.imdb_rating %></td>
+  <% if logged_in? %>
+  <td>
+    <%= rate_for(movie_table, "all") %>
+  </td>
+  <%# if current_user.monitoring?(movie) %>
+    <%# link_to_remote("Unsave", :url => movieship_path(current_user.movieship_for(movie)), :method => :delete) %>
+  <%# else %>
+    <%# link_to_remote("Save", :url => movieships_path, :with => "'movie_id=#{movie.id}'", :method => :post) %>
+  <%#end %>
+  
+  <% end %>
+</tr>

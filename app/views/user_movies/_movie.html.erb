@@ -1,0 +1,40 @@
+<tr>
+  <td><%= link_to movie.name, movie_path(movie) -%></td>
+  <td><%= movie.rating -%></td>
+  <td><%= movie.year -%></td>
+  <td><%= movie.imdb_rating -%></td>
+  <% if @user ||= current_user %>
+  <td>
+    <% if @user.rated?(movie, "all") || @user.reviewed?(movie, "all") %>
+      <% review = @user.review_for(movie, "all") %>
+      <%= link_to review.rating, edit_movie_review_path(movie, review) %>
+    <% else %>
+      <%= link_to "Rate!", new_movie_review_path(movie) %>
+    <% end %>
+  </td>
+  <td>
+    <% if @user.rated?(movie, "all") || @user.reviewed?(movie, "all") %>
+      <% review = @user.review_for(movie, "all") %>
+      <%= link_to @user.reviewed?(movie, "all") ? "Edit Review" : "Review this!", edit_movie_review_path(movie, review) %>
+    <% else %>
+      <%= link_to "Review this!", new_movie_review_path(movie) %>
+    <% end %>
+  </td>
+  <td>
+    <% if @user.seen?(movie, "all") %>
+
+      <%= link_to "#{pluralize(@user.seen_count(movie, "all"), "viewing")}<br/>add more?", user_movie_views_path(@user, movie) %>
+    <% else %>
+      <%= link_to "I've seen this!", user_movie_views_path(@user, movie) %>
+    <% end %>
+  </td>
+  <td>
+    <% if @user.owns?(movie, "all") %>
+      <%=  @user.ownerships_lists_for(movie, "all") %>
+      <%= link_to "manage", user_movie_ownerships_path(@user, movie) %>
+    <% else %>
+      <%= link_to "I have this!", user_movie_ownerships_path(@user, movie) %>
+    <% end %>
+  </td>
+  <% end %>
+</tr>

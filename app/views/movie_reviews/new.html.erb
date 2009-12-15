@@ -1,0 +1,21 @@
+<%- title "#{@movie.name} - New Reviews" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details">
+      <%= error_messages_for :review %>
+      <% form_for :review, @review, { :url => movie_reviews_path(@movie), :method => :post } do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+        <div>
+          <%= submit_tag 'Add My Review!' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <h2>Which reviews did you want?</h2>
+    <p> Options here for filtering reviews...</p>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<% title "#{@user.username} - Collection" -%>
+<div id="content" class="sidebar three_col">
+  <div id="page">
+    <%= render :partial => 'movies/header' %>
+
+    <div class="details">  
+      <h3><%= @user.username %> has "<%= @movie.name %>" in the following formats:</h3>
+      
+      <% if @ownerships.length > 0 %>
+        <ul id="ownerships">
+          <%= render :partial => @ownerships %>
+        </ul>
+      <% else %>
+        <p>No records of this movie in <%= @user.username %>'s collection</p>
+      <% end %>
+      <%= link_to "manage", new_user_movie_ownership_path(@user, @movie) %>
+    </div>
+  </div>
+
+  <div id="subpage">
+    <p>Something here</p>
+  </div>
+</div>

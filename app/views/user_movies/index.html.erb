@@ -1,0 +1,45 @@
+<%- title "Movies for #{@user.login}" %>
+<div id="content" class="sidebar">
+  <div id="page">
+    <%= render :partial => 'users/header' %>
+
+    <div class="details">  
+  <%= render :partial => "shared/filters", :locals => { :filters => @filters } %>
+
+  <div><%= will_paginate @movies %></div>
+  <table cellspacing="0">
+    <caption>Movies</caption>
+  
+    <col<%= column_class_for("name") %>/>
+    <col<%= column_class_for("rating") %>/>
+    <col<%= column_class_for("year") %>/>
+    <col<%= column_class_for("imdb_rating") %>/>
+    <% if logged_in? %>
+      <col/>
+    <% end %>
+  
+    <thead>
+      <tr>
+        <th><%= link_to "Title", polymorphic_path(@path, :order=>"name", :direction=>direction_for("name")) %></th>
+        <th><%= link_to "Rating", polymorphic_path(@path, :order=>"rating", :direction=>direction_for("rating")) %></th>
+        <th><%= link_to "Year Released", polymorphic_path(@path, :order=>"year", :direction=>direction_for("year")) %></th>
+        <th><%= link_to "IMDB Rating", polymorphic_path(@path, :order=>"imdb_rating", :direction=>direction_for("imdb_rating")) %></th>
+        <% if logged_in? %>
+          <th><%= link_to "My Rating", "/asdfa" %></th>
+          <th><%= link_to "Reviewed?", "/sdfasfa" %></th>
+          <th><%= link_to "My Views", "/asdfasf" %></th>
+          <th><%= link_to "My Media", "/asdfaf" %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => "user_movies/movie", :collection => @movies %>
+    </tbody>
+  </table>
+
+  <p>Total movies: <%= @movies.total_entries%> Found</p>
+  <div><%= will_paginate @movies %></div>
+
+    </div>
+  </div>
+</div>

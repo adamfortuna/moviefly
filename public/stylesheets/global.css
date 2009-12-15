@@ -1,0 +1,23 @@
+body { padding:0; margin:0; font-size:12px; font-family:tahoma, sans-serif; letter-spacing:1px; line-height:18px; background:#cdcdcd; color:#454545; }
+
+fieldset { padding:1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
+legend      { font-weight: bold; font-size:1.2em; }
+
+table { border:1px outset #999; border-spacing: 0px; border-collapse: collapse; }
+table caption { display:none; }
+table th { background-color:#ddd; }
+table th, table td { padding:5px; border:1px solid #999; }
+
+ul, ul li { list-style:none; margin:0; padding:0; }
+
+div.date select { width:150px; padding:4px; margin:0 10px 10px 0;}
+#view_on_3i {  }
+
+div.notes { clear:both; }
+
+
+.view div.notes, .view div.attendees { margin-top:10px; float:left; }
+.view div.notes { width:300px; }
+.view div.notes textarea { width:275px; }
+
+.view div.attendees { width:220px; }

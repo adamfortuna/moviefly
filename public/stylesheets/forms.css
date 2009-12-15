@@ -1,0 +1,73 @@
+/* forms.css */
+
+input[type="text"],input[type="password"] { background-color:#DFEFFC; }
+
+input[type="submit"]:hover { cursor:pointer; }
+
+
+
+/* Errors */
+div.formError { color: red; }
+div.fieldWithErrors input, div.fieldWithErrors select, div.fieldWithErrors textarea { border-color: red; }
+div.fieldWithErrors input.text:focus, div.fieldWithErrors input.title:focus         { border-color: red; background:#fff; }
+
+
+/* Handle required and disabled fields  */
+p.required label:before { content: "* "; }
+.disabled { font-weight: lighter; color: #ababab; }
+.disabled p.required label:before { content: ""; }
+
+
+
+
+/*
+
+
+* Textareas *
+textarea { width:400px; height:250px; border:1px solid #bbb; background:#eee; padding:5px; }
+textarea:focus { border:1px solid #999; background:#fff; }
+
+* Select fields *
+select { border:1px solid #ccc; background:#eee; width:200px; }
+select:focus { border:1px solid #999; background:#fff; }
+
+* Submit buttons *
+input[type="submit"] { padding:.4em; }
+input.inline { position:absolute; margin-top: .3em; }
+
+input[type="text"],input[type="password"]  {  }
+input[type="file"] { width: 250px; }
+select.text, select.title  { width: 310px; margin:0.5em 0.5em 0.5em 0; border:1px solid #bbb; background:#eee; padding:5px; }
+select.text:focus, select.title:focus { border:1px solid #999; background:#fff; }
+select.title { font-size:1.5em; }
+
+
+
+p.block { margin: 0 0 .3em 0; }
+p.block label { display:block; padding:0; margin:0; }
+label { font-weight: bold; }
+
+.big-button { font-size:20px; padding:0; margin:0; }
+
+
+* Text fields *
+input.text, input.title   { margin:0.5em 0.5em 0.5em 0; }
+input.text, input.title   { border:1px solid #bbb; background:#eee; padding:5px; }
+input.text:focus,
+input.title:focus         { border:1px solid #999; background:#fff; }
+input.title               { font-size:1.5em; }
+
+
+
+.big_search label { font-size:1.5em; }
+.big_search input.title { width: 618px; }
+
+* forms *
+form div.field label { display:block; }
+form div.field span.info { font-size:11px; display:block; color:#666; font-style:italic; }
+p.error { color:red; }
+.inline { display:inline; }
+.block { display: block; }
+span.info, div.info { font-size: .8em; line-height: 1.875em; }
+
+*/

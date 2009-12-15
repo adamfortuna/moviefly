@@ -1,0 +1,1 @@
+page.replace_html "monitoring_movie_#{@movie.id}", link_to_remote("Unsave", :url => movieship_path(@movieship), :method => :delete)

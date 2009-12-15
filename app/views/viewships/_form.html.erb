@@ -1,0 +1,11 @@
+<li>
+  <label>
+  <%= check_box_tag 'view[users][]', :value => form.id %>
+    <span>
+      <%= form.username %>   
+      <% unless form.name.blank? %>
+        <br/>(<%= form.name %>)
+      <% end %>
+    </span>
+  </label>
+</li>

@@ -1,0 +1,14 @@
+--- 
+javascripts: 
+- application: 
+  - application
+- login:
+  - openid-jquery
+stylesheets: 
+- moviefly: 
+  - global
+  - layout
+  - openid
+  - forms
+  - general
+  - specific

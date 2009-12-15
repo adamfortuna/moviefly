@@ -1,0 +1,5 @@
+<tr<%= cycle('', ' class="even"') %>>
+  <td><%= link_to language.name, language_movies_path(language) -%></td>
+  <td><%= link_to language.abbreviation, language_movies_path(language) -%></td>  
+  <td><%= language.movies_count -%></td>
+</tr>

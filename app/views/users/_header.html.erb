@@ -1,0 +1,32 @@
+<div id="header_section">
+  <div class="avatar">
+    <%= image_tag @user.gravatar_url(:size => 100) %>
+  </div>
+  <div class="header_info">
+    <h2><%= @user.username %></h2>
+    <ul class="nav">
+      <li>Reviews: <%= @user.reviews.length %></li>
+      <li>Watched: <%= pluralize @user.viewships.length, "movies" %></li>
+      <li>Collection: <%= pluralize @user.ownerships.length, "movies" %></li>
+      <li>Following: <%= pluralize @user.movieships.length, "movies" %></li>
+    </ul>
+  </div>  
+</div>
+
+<ul id="side_menu">
+  <%= menu_link "Profile Info", user_path(@user) %>
+  <%= menu_link "Reviews", user_reviews_path(@user) %>
+  <%= menu_link "Ratings", user_ratings_path(@user) %>
+	<%= menu_link "All Movies", user_movies_path(@user) %>
+  <li class="spacer">Their Lists</li>
+  <%= menu_link "Watched Movies", "/" %>
+  <%= menu_link "Owned Movies", "/" %>
+  <%= menu_link "100 Highest Rated", "/" %>
+  <%= menu_link "Watched this year", "/" %>
+  <%= menu_link "Still to See", "/" %>
+
+  <% if me?(@user) %>
+  <li class="spacer">Your Controls</li>
+  <%= menu_link "Edit Your profile", edit_user_path(current_user) %>
+  <% end %>
+</ul>
